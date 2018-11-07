@@ -4,10 +4,11 @@
  * Use: System.err.println to ouput debugging information to STDERR.
  * ***/
 package com.isograd.exercise;
-import java.util.*;
+
+import java.util.Scanner;
 
 public class IsoContest {
-    public static void main( String[] argv ) throws Exception {
+    public static void main(String[] argv) throws Exception {
         Scanner sc = new Scanner(System.in);
         int[] crepes = new int[6];
         for (int i = 0; i < 6; i++) {
@@ -33,10 +34,8 @@ public class IsoContest {
 
     public static int[] turn(int position, int[] crepes) {
         int[] returned = new int[6];
-        int j = 0;
-        for (int i = position; i >= 0; i--) {
+        for (int i = position, j = 0; i >= 0; i--, j++) {
             returned[j] = crepes[i];
-            j++;
         }
         for (int i = position + 1; i < crepes.length; i++) {
             returned[i] = crepes[i];
