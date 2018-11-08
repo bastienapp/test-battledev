@@ -19,56 +19,56 @@ public class IsoContest {
             h1.add(sc.nextInt());
             h2.add(sc.nextInt());
         }
-        ArrayList<Integer> sch = new ArrayList<>();
-        int result = schedule(h1, h2, sch);
+        ArrayList<Integer> agenda = new ArrayList<>();
+        int result = schedule(h1, h2, agenda);
         System.out.print(result);
     }
 
-    public static int schedule(ArrayList<Integer> h1, ArrayList<Integer> h2, ArrayList<Integer> sch) {
+    public static int schedule(ArrayList<Integer> h1, ArrayList<Integer> h2, ArrayList<Integer> agenda) {
 
-        if (h1.size() == 0 && h2.size() == 0) {
-            return sch.size();
+        if (h1.size() == 0 || h2.size() == 0) {
+            return agenda.size();
         }
 
         int maxStudents = 0;
         for (int i = 0; i < h1.size(); i++) {
             int h = h1.get(i);
-            if (!overlap(h, sch)) {
-                sch.add(h);
+            if (!overlap(h, agenda)) {
+                agenda.add(h);
             }
-            ArrayList<Integer> ch1 = cloneH(h1);
-            ArrayList<Integer> ch2 = cloneH(h2);
+            ArrayList<Integer> ch1 = clone(h1);
+            ArrayList<Integer> ch2 = clone(h2);
             ch1.remove(i);
             ch2.remove(i);
-            maxStudents = Math.max(maxStudents, schedule(ch1, ch2, sch));
+            maxStudents = Math.max(maxStudents, schedule(ch1, ch2, agenda));
         }
         for (int i = 0; i < h2.size(); i++) {
             int h = h2.get(i);
-            if (!overlap(h, sch)) {
-                sch.add(h);
+            if (!overlap(h, agenda)) {
+                agenda.add(h);
             }
-            ArrayList<Integer> ch1 = cloneH(h1);
-            ArrayList<Integer> ch2 = cloneH(h2);
+            ArrayList<Integer> ch1 = clone(h1);
+            ArrayList<Integer> ch2 = clone(h2);
             ch1.remove(i);
             ch2.remove(i);
-            maxStudents = Math.max(maxStudents, schedule(ch1, ch2, sch));
+            maxStudents = Math.max(maxStudents, schedule(ch1, ch2, agenda));
         }
         return maxStudents;
     }
 
-    public static boolean overlap(int h, ArrayList<Integer> sch) {
+    public static boolean overlap(int h, ArrayList<Integer> agenda) {
         int hMin = h - 60;
         int hMax = h + 60;
-        for (int s : sch) {
-            if (s >= hMin && s <= hMax) {
+        for (int slot : agenda) {
+            if (slot >= hMin && slot <= hMax) {
                 return true;
             }
         }
         return false;
     }
 
-    public static ArrayList<Integer> cloneH(List<Integer> list) {
-        ArrayList<Integer> clone = new ArrayList<>(list.size());
+    public static ArrayList<Integer> clone(List<Integer> list) {
+        ArrayList<Integer> clone = new ArrayList<>();
         clone.addAll(list);
         return clone;
     }
