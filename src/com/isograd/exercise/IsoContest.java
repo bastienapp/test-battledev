@@ -19,7 +19,7 @@ public class IsoContest {
         System.out.print(minRound);
     }
 
-    public static int spatula(int position, int[] crepes, int round) {
+    private static int spatula(int position, int[] crepes, int round) {
         if (isSorted(crepes) || round > 7) {
             return Math.max(round - 1, 0);
         }
@@ -32,7 +32,7 @@ public class IsoContest {
         return minRound;
     }
 
-    public static int[] turn(int position, int[] crepes) {
+    private static int[] turn(int position, int[] crepes) {
         int[] returned = new int[6];
         for (int i = position, j = 0; i >= 0; i--, j++) {
             returned[j] = crepes[i];
@@ -43,7 +43,7 @@ public class IsoContest {
         return returned;
     }
 
-    public static boolean isSorted(int[] a) {
+    private static boolean isSorted(int[] a) {
         for (int i = 0; i < a.length - 1; i++) {
             if (a[i] > a[i + 1]) {
                 return false;
