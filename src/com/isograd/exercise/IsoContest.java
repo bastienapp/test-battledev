@@ -24,7 +24,7 @@ public class IsoContest {
         System.out.print(result);
     }
 
-    public static int schedule(ArrayList<Integer> h1, ArrayList<Integer> h2, ArrayList<Integer> agenda) {
+    private static int schedule(ArrayList<Integer> h1, ArrayList<Integer> h2, ArrayList<Integer> agenda) {
 
         if (h1.size() == 0 || h2.size() == 0) {
             return agenda.size();
@@ -56,7 +56,7 @@ public class IsoContest {
         return maxStudents;
     }
 
-    public static boolean overlap(int h, ArrayList<Integer> agenda) {
+    private static boolean overlap(int h, ArrayList<Integer> agenda) {
         int hMin = h - 60;
         int hMax = h + 60;
         for (int slot : agenda) {
@@ -67,9 +67,7 @@ public class IsoContest {
         return false;
     }
 
-    public static ArrayList<Integer> clone(List<Integer> list) {
-        ArrayList<Integer> clone = new ArrayList<>();
-        clone.addAll(list);
-        return clone;
+    private static ArrayList<Integer> clone(List<Integer> list) {
+        return new ArrayList<>(list);
     }
 }
