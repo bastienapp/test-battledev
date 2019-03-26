@@ -8,12 +8,69 @@ import java.util.*;
 
 public class IsoContest {
     public static void main( String[] argv ) throws Exception {
-        String  line;
+        int n;
         Scanner sc = new Scanner(System.in);
-        while(sc.hasNextLine()) {
+        String line = sc.nextLine();
+        n = Integer.parseInt(line);
+        char[][] grid = new char[n][n];
+        for (int i = 0; i < n; i++) {
             line = sc.nextLine();
-            /* Lisez les données et effectuez votre traitement */
+            grid[i] = line.toCharArray();
         }
-        /* Vous pouvez aussi effectuer votre traitement une fois que vous avez lu toutes les données.*/
+        String result = "";
+        int direction = 0;
+        for (int i = 0; i < n; i++) {
+            if (direction == 0) {
+                for (int j = 0; j < n; j++) {
+                    if (grid[i][j] == 'o') {
+                        result += 'x';
+                        grid[i][j] = '.';
+                    }
+                    if (j + 1 < n) {
+                        result += ">";
+                    }
+                }
+            } else {
+                for (int j = n - 1; j >= 0; j--) {
+                    if (grid[i][j] == 'o') {
+                        result += 'x';
+                        grid[i][j] = '.';
+                    }
+                    if (j - 1 >= 0) {
+                        result += "<";
+                    }
+                }
+            }
+            direction = direction == 0 ? 1 : 0;
+            if (i + 1 < n) {
+                result += "v";
+            }
+        }
+        for (int i = n - 1; i >= 0; i--) {
+            if (direction == 0) {
+                for (int j = 0; j < n; j++) {
+                    if (grid[i][j] == '*') {
+                        result += 'x';
+                    }
+                    if (j + 1 < n) {
+                        result += ">";
+                    }
+                }
+            } else {
+                for (int j = n - 1; j >= 0; j--) {
+                    if (grid[i][j] == '*') {
+                        result += 'x';
+                    }
+                    if (j - 1 >= 0) {
+                        result += "<";
+                    }
+                }
+            }
+            direction = direction == 0 ? 1 : 0;
+            if (i - 1 >= 0) {
+                result += "^";
+            }
+        }
+        System.out.println(result);
     }
 }
