@@ -83,15 +83,6 @@ public class IsoContestTest {
         assertEquals(output, getOutput());
     }
 
-    @Test
-    public void testIsoContest5() throws Exception {
-        String output = initTest(5);
-
-        IsoContest.main(new String[0]);
-
-        assertEquals(output, getOutput());
-    }
-
     public String initTest(int i) throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
         URL pathInput = classLoader.getResource(String.format("input%d.txt", i));
