@@ -41,7 +41,7 @@ public class IsoContestTest {
     }
 
     private String getOutput() {
-        return testOut.toString();
+        return testOut.toString().trim();
     }
 
     @After
